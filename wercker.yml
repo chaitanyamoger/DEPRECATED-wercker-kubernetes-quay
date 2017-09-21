@@ -23,17 +23,17 @@ build:
         code: cp app cities-service.json cities-controller.json "$WERCKER_OUTPUT_DIR"
 
 deploy:
-    box: chaitanya28/werckerdemo:latest
+    box: google/golang
     steps:
     # use the scratch step to build a container from scratch based on the files present
      - internal/docker-scratch-push:
-        username:
-        password:
+        username: chaitanya28
+        password: Chaitanya_28
         cmd: ./app
-        tag: 1.8
+        tag: 2.0
         ports: "5000"
-        repository: k8s_test_repo
-        registry: https://artifactoryui-stage.oraclecorp.com/artifactory/v2
+        repository: chaitanya28/werckerdemo
+        registry: https://hub.docker.com
 
     # Run this to create the rc and service
     initialize:
@@ -56,4 +56,4 @@ deploy:
         username: kubernetes-admin
         insecure-skip-tls-verify: true
         command: --kubeconfig admin.conf rolling-update cities --image-pull-policy=Always
-        image: chaitanya28/werckerdemo:1.8
+        image: chaitanya28/werckerdemo:2.0
