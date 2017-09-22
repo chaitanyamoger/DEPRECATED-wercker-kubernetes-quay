@@ -31,7 +31,7 @@ deploy:
         password: Chaitanya_28
         cmd: ./app
         tag: 2.0
-        ports: "5000"
+        ports:
         repository: hub.docker.com/r/chaitanya28/werckerdemo
         registry: https://hub.docker.com
 
